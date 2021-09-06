@@ -37,22 +37,22 @@ function Signup() {
             if(res.data.success){
           
               setLoader(false)
-              // const Toast = Swal.mixin({
-              //     toast: true,
-              //     position: 'top-end',
-              //     showConfirmButton: false,
-              //     timer: 3000,
-              //     timerProgressBar: true,
-              //     didOpen: (toast) => {
-              //       toast.addEventListener('mouseenter', Swal.stopTimer)
-              //       toast.addEventListener('mouseleave', Swal.resumeTimer)
-              //     }
-              //   })
+              const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
                 
-              //   Toast.fire({
-              //     icon: 'success',
-              //     title: 'OTP sent successfully'
-              //   })
+                Toast.fire({
+                  icon: 'success',
+                  title: 'OTP sent successfully'
+                })
                 setOtpsend(true);
                 // var seconds = 180;
                 // var el = document.getElementsByClassName('timer');
@@ -92,7 +92,7 @@ function Signup() {
     }
     const otpSubmit=()=>{
       
-      axios.post('http://localhost:8000/otp-verify',{email,otp}).then((res)=>{
+      axios.post('https://cicdnode.herokuapp.com/otp-verify',{email,otp}).then((res)=>{
         if(res.data.success){
           alert("otp verified")
 
