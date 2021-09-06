@@ -1,0 +1,95 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
+  body {
+    width: 100%;
+    height: 100%;
+    background-color: #eeeeee;
+    background-size: cover;
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  body h3 {
+    color: #098d35;
+    font-weight: bold;
+  }
+  
+  body .in {
+    width: 20px;
+    height: 10px;
+    color: white;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: #098d35;
+  }
+  
+  body h2 {
+    margin-top: 20px;
+  }
+  
+  body p {
+    margin-top: 20px;
+    color: #363535;
+  }
+  
+  .box {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 0px;
+    background-color: #eeeeee;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+  }
+  
+  .box input {
+    height: 50px;
+    margin: 10px;
+    border: 1px solid #b9b7b7;
+    padding-left: 20px;
+    border-radius: 4px;
+  }
+  
+  .box button {
+    width: 380px;
+    height: 50px;
+    margin: auto;
+    border-style: hidden;
+    padding-right: 4px;
+    background-color: #098d35;
+    color: white;
+    font-size: 20px;
+    border-radius: 4px;
+  }
+  
+  
+  .loader {
+    border: 5px solid #7ba78a;
+    border-radius: 50%;
+    border-top: 5px solid #e8ebe9;
+    width: 25px;
+    height: 25px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin: auto;
+    background-color: #098d35;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /*# sourceMappingURL=login.css.map */

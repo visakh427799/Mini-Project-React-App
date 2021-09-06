@@ -40,7 +40,7 @@ const[loader,setLoader]=useState(false);
     }
     return (
         <div>
-          <h3>Connected <span>in</span></h3>
+          <h3>Connected <span className="in">in</span></h3>
     <h2>Sign in</h2>
     <p>Stay updated on your professional world   </p>
     <div class="box">

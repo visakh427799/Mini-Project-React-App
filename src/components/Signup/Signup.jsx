@@ -114,7 +114,7 @@ function Signup() {
    
     return (
         <div>
-             <h3>Connected <span>in</span></h3>
+             <h3>Connected <span className="in">in</span></h3>
     <h2>Sign up</h2>
     <p>{otpsend?"An otp has been send to "+email:"Stay updated on your professional world"}</p>
     <div class="box">
