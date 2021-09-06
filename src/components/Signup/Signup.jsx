@@ -32,7 +32,7 @@ function Signup() {
     else{
         setLoader(true)
         setDisabled(true)
-        axios.post('http://localhost:8000/email-verify',{email})
+        axios.post('https://cicdnode.herokuapp.com/email-verify',{email})
         .then((res)=>{
             if(res.data.success){
           
