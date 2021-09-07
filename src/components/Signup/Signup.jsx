@@ -11,6 +11,7 @@ function Signup() {
     const[disabled,setDisabled]=useState(false)
     const[email,setEmail]=useState("");
     const[otp,setOtp]=useState("")
+    const[count,setCount]=useState(1)
     
     const changeOtp=(e)=>{
        setOtp(e.target.value)
@@ -31,7 +32,7 @@ function Signup() {
     }
     else{
         setLoader(true)
-        setDisabled(true)
+      
         axios.post('https://cicdnode.herokuapp.com/email-verify',{email})
         .then((res)=>{
             if(res.data.success){
@@ -53,7 +54,12 @@ function Signup() {
                   icon: 'success',
                   title: 'OTP sent successfully'
                 })
-                setOtpsend(true);
+                // .then(()=>{
+                //   setOtpsend(true);
+                // })
+                  setDisabled(true)
+                  setOtpsend(true);
+             
                 // var seconds = 180;
                 // var el = document.getElementsByClassName('timer');
                 
@@ -95,7 +101,7 @@ function Signup() {
       axios.post('https://cicdnode.herokuapp.com/otp-verify',{email,otp}).then((res)=>{
         if(res.data.success){
           alert("otp verified")
-
+          setCount(2)
 
         }
         else{
@@ -112,7 +118,10 @@ function Signup() {
       })
     }
    
-    return (
+    
+  switch(count){
+    case 1:
+      return (
         <div>
              <h3>Connected <span className="in">in</span></h3>
     <h2>Sign up</h2>
@@ -126,9 +135,38 @@ function Signup() {
       <button onClick={otpsend?otpSubmit:handleSubmit}>{loader?<div  className="loader" id="loginloader"></div>: "Next"}</button>
     </div>
     
-    <p>Already have an account? <Link to="/">Next</Link></p>
+    <p>Already have an account? <Link to="/">Login</Link></p>
         </div>
     )
+  
+      break;
+    case 2:
+      return (
+        <div>
+             <h3>Connected <span className="in">in</span></h3>
+    <h2>Sign up</h2>
+    <p>Set up a password for your account</p>
+    <div class="box">
+    
+      <input onChange={handleChange}  type="password" name="pass1" placeholder="Enter a password"/>
+     <input onChange={changeOtp} type="password" name="pass2" placeholder="Confirm password"/> 
+    
+     
+      <button >{loader?<div  className="loader" id="loginloader"></div>: "Let's go"}</button>
+    </div>
+    
+    
+        </div>
+    )
+  
+      break;  
+
+      default:
+        break;
+  }
+
+
+          
 }
 
 export default Signup
