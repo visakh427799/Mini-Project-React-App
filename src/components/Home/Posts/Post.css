@@ -1,0 +1,177 @@
+.outer{
+    display: grid;
+    grid-template-rows: 1fr;
+    background-color: rgb(241, 241, 241);
+}
+.outer .all_posts{
+padding-top:20px;
+background-color: rgb(241, 241, 241);
+
+}
+.posts{
+    background-color: rgb(241, 241, 241);
+    
+    
+}
+
+.Post_header{
+    width:500px;
+    height:100px;
+    background-color: rgb(255, 255, 255);
+    margin-top:28px;
+    border-radius: 8px;
+   
+}
+.Post_header .Post_top{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.Post_header .Post_top .Post_profile_pic{
+    width:40px;
+    height:40px;
+    border-radius: 40px;
+    margin-top:15px;
+    margin-left:15px;
+    
+}
+.Post_header .Post_top .Post_profile_pic img{
+    width:40px;
+    height:40px;
+    border-radius: 40px;
+
+}
+.Post_header .Post_top .Post_start_post{
+    width:430px;
+    height:40px;
+    background-color: rgb(255, 255, 255);
+    margin-right:10px;
+    margin-top:15px;
+    
+}
+.Post_header .Post_top .Post_start_post button{
+    width:430px;
+    height:40px;
+    background-color: rgb(255, 255, 255);
+    border-style: hidden;
+    border-radius: 25px;
+    border:1px solid rgb(209, 208, 208);
+    color:rgb(105, 105, 105);
+}
+
+.Post_header .Post_bottom{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top:10px;
+}
+.Post_header .Post_bottom .Post_item-1{
+
+    width:90px;
+    height:40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: pointer;
+    margin-left:10px;
+    
+    
+
+}
+.Post_header .Post_bottom .Post_item-1 i:hover{
+
+   background-color: rgb(179, 179, 179);
+
+}
+.Post_header .Post_bottom .Post_item-1 i{
+
+    color: rgb(17, 150, 184);
+    
+
+}
+.Post_header .Post_bottom .Post_item-1 .span1{
+
+    color: rgb(164, 165, 164);
+    
+    
+
+}
+.Post_header .Post_bottom .Post_item-2 {
+
+    width:90px;
+    height:40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: pointer;
+    margin-left:10px;
+    
+    
+
+}
+.Post_header .Post_bottom .Post_item-2 i:hover{
+
+  /* background-color: rgb(218, 218, 218);*/
+   
+
+}
+.Post_header .Post_bottom .Post_item-2 i{
+
+    color: rgb(17, 184, 101);
+    width:20px;
+    
+
+}
+.Post_header .Post_bottom .Post_item-3 {
+
+    width:90px;
+    height:30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: pointer;
+    margin-left:10px;
+    
+    
+
+}
+.Post_header .Post_bottom .Post_item-3 i{
+
+    color: rgb(190, 126, 7);
+    width:20px;
+    
+
+}
+.Post_header .Post_bottom .Post_item-2 .span2{
+    
+    color: rgb(164, 165, 164);
+    
+
+}
+.Post_header .Post_bottom .Post_item-3 .span3{
+    
+    color: rgb(164, 165, 164);
+    
+
+}
+.Post_header .Post_bottom .Post_item-4 {
+
+    width:90px;
+    height:30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: pointer;
+    margin-left:10px;
+    
+    
+
+}
+.Post_header .Post_bottom .Post_item-4 i{
+
+    color: rgb(255, 177, 52);
+    width:20px;
+    
+
+}
+
+.Post_header .Post_bottom .Post_item-4 .span4{
+    
+    color: rgb(164, 165, 164);
+    
+
+}

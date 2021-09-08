@@ -1,5 +1,5 @@
 import Router from "./Router";
-
+require('dotenv').config()
 
 function App() {
   return (

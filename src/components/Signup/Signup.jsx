@@ -4,6 +4,8 @@ import './Signup.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import getApi from '../../API';
+const API=getApi();
 function Signup() {
 
     const[loader,setLoader]=useState(false)
@@ -32,8 +34,8 @@ function Signup() {
     }
     else{
         setLoader(true)
-      
-        axios.post('https://cicdnode.herokuapp.com/email-verify',{email})
+       
+        axios.post(API+'/email-verify',{email})
         .then((res)=>{
             if(res.data.success){
           
@@ -98,7 +100,7 @@ function Signup() {
     }
     const otpSubmit=()=>{
       
-      axios.post('https://cicdnode.herokuapp.com/otp-verify',{email,otp}).then((res)=>{
+      axios.post(API+'/otp-verify',{email,otp}).then((res)=>{
         if(res.data.success){
           alert("otp verified")
           setCount(2)
@@ -122,7 +124,7 @@ function Signup() {
   switch(count){
     case 1:
       return (
-        <div>
+        <div className="bd">
              <h3>Connected <span className="in">in</span></h3>
     <h2>Sign up</h2>
     <p>{otpsend?"An otp has been send to "+email:"Stay updated on your professional world"}</p>

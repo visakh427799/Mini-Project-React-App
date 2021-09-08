@@ -1,0 +1,81 @@
+.each_post{
+    width:500px;
+    height:600px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    border-radius: 9px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+}
+.each_post .div_1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 20px;
+    width:40px;
+}
+.each_post .div_1 .pr-pic{
+    margin-top: 20px;
+    width:50px;
+    height:50px;
+    border-radius: 50px;
+}
+.each_post .div_1 .pr-pic img{
+    width:50px;
+    height:50px;
+    border-radius: 50px;
+}
+.each_post .div_1 .name_follow{
+    position: relative;
+}
+.each_post .div_1 .name_follow .name{
+    margin-left:-160px;
+    width:400px;
+    color: rgb(86, 86, 87);
+}
+.each_post .div_1 .name_follow .about{
+    
+    width:100px;
+    color: rgb(149, 146, 146);
+    font-size: 12px;
+    position: absolute;
+    top:20px;
+    right:128px;
+
+}
+.each_post .div_1 .name_follow .time{
+  
+    width:100px;
+    color: rgb(149, 146, 146);
+    font-size: 12px;
+    position: absolute;
+    top:35px;
+    right:164px;
+
+}
+.each_post .div_1 .follow_now{
+ margin-left:80px;
+ width:100px;
+ 
+}
+.each_post .div_1 .follow_now .follow_text{
+    color:rgb(25, 150, 233);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+   
+   }
+   .each_post .div_2 .title{
+       font-size: 12px;
+       color: rgb(19, 19, 20);
+       max-width: 470px;
+       text-align: left;
+       margin-left: 20px;
+   }
+   .each_post .div_3 {
+       margin-top: 10px;
+       width:500px;
+   }
+   .each_post .div_3 img{
+    width:500px;
+}
