@@ -78,4 +78,61 @@
    }
    .each_post .div_3 img{
     width:500px;
+   
+}
+
+.each_post  .div_5{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.each_post  .div_5 .div_like{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 70px;
+    margin-left: 20px;
+    color: rgb(104, 104, 104);
+
+   
+}
+.each_post  .div_5 .div_comment{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 110px;
+    margin-left: 6px;
+    color: rgb(104, 104, 104);
+   
+}
+.each_post  .div_5 .div_share{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 80px;
+    margin-left: 20px;
+    color: rgb(104, 104, 104);
+
+   
+}
+.each_post  .div_5 .div_send{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 80px;
+    margin-left: 10px;
+    color: rgb(104, 104, 104);
+
+   
+}
+.each_post  .div_4 {
+border-bottom: 1px solid rgb(235, 235, 235);
+width:450px;
+margin:auto;
+margin-top:10px;
+
+   
+}
+.div_4 .likes_comments{
+    font-size: 10px;
+    color: rgb(189, 189, 189);
+    float: left;
+    margin-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }

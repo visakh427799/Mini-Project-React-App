@@ -14,6 +14,12 @@ function Signup() {
     const[email,setEmail]=useState("");
     const[otp,setOtp]=useState("")
     const[count,setCount]=useState(1)
+
+    const [pass,setPass]=useState({
+
+      pass1:"",
+      pass2:""
+    })
     
     const changeOtp=(e)=>{
        setOtp(e.target.value)
@@ -120,6 +126,22 @@ function Signup() {
       })
     }
    
+
+    const setPassword=()=>{
+
+      axios.post(API+'/add-password',{pass}).then(()=>{
+           
+      }).catch(()=>{
+
+      })
+
+    }
+    const handleChangepass=(e)=>{
+
+      setPass({...pass,[e.target.name]:e.tareget.value})
+
+       
+    }
     
   switch(count){
     case 1:
@@ -150,11 +172,11 @@ function Signup() {
     <p>Set up a password for your account</p>
     <div class="box">
     
-      <input onChange={handleChange}  type="password" name="pass1" placeholder="Enter a password"/>
-     <input onChange={changeOtp} type="password" name="pass2" placeholder="Confirm password"/> 
+      <input onChange={handleChangepass}  type="password" name="pass1" placeholder="Enter a password"/>
+     <input onChange={handleChangepass} type="password" name="pass2" placeholder="Confirm password"/> 
     
      
-      <button >{loader?<div  className="loader" id="loginloader"></div>: "Let's go"}</button>
+      <button  onClick={setPassword}>{loader?<div  className="loader" id="loginloader"></div>: "Let's go"}</button>
     </div>
     
     
