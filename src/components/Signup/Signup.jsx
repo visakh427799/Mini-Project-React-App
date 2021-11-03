@@ -138,7 +138,7 @@ function Signup() {
     }
     const handleChangepass=(e)=>{
 
-      setPass({...pass,[e.target.name]:e.tareget.value})
+      setPass({...pass,[e.target.name]:e.target.value})
 
        
     }
