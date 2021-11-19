@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2';
 function Login() {
   let history = useHistory();
   const [user, setUser] = useState({
@@ -19,18 +20,31 @@ function Login() {
       alert("Input missing");
     } else {
       setLoader(true);
-      history.push("/home");
-      // axios.post('http://localhost:8000/login',{user}).then((res)=>{
-      //     console.log(res);
-      //   if(res.data.success){
-      //    setLoader(false)
+     
+      axios.post('http://localhost:5000/login',{user}).then((res)=>{
+          console.log(res);
+        if(res.data.success){
+         setLoader(false)
+         console.log(res.data.user_id)
+         localStorage.setItem('user',res.data.user_id)
+         history.push("/home");
+        //  //redirect to home
+        }
+        else{
+        
+          Swal.fire({
+            icon: 'error',
+           
+            text: 'Invalid credentials..!',
+           
+          })
+         setLoader(false)
 
-      //    //redirect to home
-      //   }
+        }
 
-      // }).catch((err)=>{
+      }).catch((err)=>{
 
-      // });
+      });
     }
   };
   const handleChange = (e) => {

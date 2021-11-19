@@ -2,12 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import './Signup.css'
 import {Link} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import getApi from '../../API';
 const API=getApi();
 function Signup() {
-
+    let history=useHistory()
     const[loader,setLoader]=useState(false)
     const[otpsend,setOtpsend]=useState(false)
     const[disabled,setDisabled]=useState(false)
@@ -109,6 +110,7 @@ function Signup() {
       axios.post(API+'/otp-verify',{email,otp}).then((res)=>{
         if(res.data.success){
           alert("otp verified")
+          localStorage.setItem('user',res.data.user_id)
           setCount(2)
 
         }
@@ -120,7 +122,7 @@ function Signup() {
           alert("something went wrong try again")
          }
         }
-
+       
       }).catch(()=>{
          alert("something went wrong")
       })
@@ -128,17 +130,30 @@ function Signup() {
    
 
     const setPassword=()=>{
+      let u_id=localStorage.getItem('user');
+      console.log(u_id);
+    
+      axios.post(API+'/add-password',{pass,u_id}).then((resp)=>{
 
-      axios.post(API+'/add-password',{pass}).then(()=>{
+        console.log(resp)
+         if(resp.data.success){
+             history.push("/home");
+    
+      
+         }
            
-      }).catch(()=>{
+      }).catch((err)=>{
+          console.log(err)
 
       })
 
     }
     const handleChangepass=(e)=>{
 
-      setPass({...pass,[e.target.name]:e.target.value})
+      setPass({...pass,[e.target.name]:e.target.value});
+
+
+
 
        
     }
