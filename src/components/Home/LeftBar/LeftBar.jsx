@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import "./LeftBar.css";
+import getApi from '../../../API';
+const API=getApi();
 
 function LeftBar() {
   const [user,setUsr]=React.useState({})
@@ -8,7 +10,7 @@ function LeftBar() {
     let usr=localStorage.getItem('user');
     console.log(usr);
     if(usr){
-     axios.post('http://localhost:5000/getUser',{usr}).then((dat)=>{
+     axios.post(API+'/getUser',{usr}).then((dat)=>{
         console.log(dat.data);
         setUsr(dat)
         

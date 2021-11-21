@@ -6,6 +6,8 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
+import getApi from '../../API';
+const API=getApi();
 function Login() {
   let history = useHistory();
   const [user, setUser] = useState({
@@ -16,12 +18,13 @@ function Login() {
   //cons
 
   const handleSubmit = () => {
-    if (user.email === "" || user.password === "") {
+    console.log(process.env.REACT_APP_BASE_URL_HEROKU);
+    if (user.email === "" && user.password === "") {
       alert("Input missing");
     } else {
       setLoader(true);
      
-      axios.post('http://localhost:5000/login',{user}).then((res)=>{
+      axios.post(API+`/login`,{user}).then((res)=>{
           console.log(res);
         if(res.data.success){
          setLoader(false)
