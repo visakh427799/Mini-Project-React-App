@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.css";
 import LeftBar from "../LeftBar/LeftBar";
 import Post from "../Posts/Post";
-function Header() {
+function Header({user}) {
   return (
     <div>
       <div className="nav">
@@ -34,7 +34,7 @@ function Header() {
         </div>
       </div>
       <div className="content">
-        <LeftBar />
+        <LeftBar user={user} />
         <Post />
       </div>
     </div>

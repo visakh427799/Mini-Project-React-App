@@ -4,24 +4,9 @@ import "./LeftBar.css";
 import getApi from '../../../API';
 const API=getApi();
 
-function LeftBar() {
+function LeftBar(props) {
   const [user,setUsr]=React.useState({})
-  React.useEffect(()=>{
-    let usr=localStorage.getItem('user');
-    console.log(usr);
-    if(usr){
-     axios.post(API+'/getUser',{usr}).then((dat)=>{
-        console.log(dat.data);
-        setUsr(dat)
-        
-        
-         
-      }).catch(()=>{
-
-      })
-       
-    }
-  },[])
+  
   return (
     <div className="LftBar">
       <div className="box">
@@ -29,7 +14,7 @@ function LeftBar() {
         <div className="profile-pic">
           <img src="https://avatars.githubusercontent.com/u/60034460?v=4"></img>
         </div>
-        <p className="user-name"></p>
+        <p className="user-name">{props.user}</p>
         <p className="about">
           MERN Stack |AWS| DevOps Enthusiast| Node js | React js | Express js |
           Mongodb|Python|sql
