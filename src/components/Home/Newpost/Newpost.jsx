@@ -1,17 +1,20 @@
 import React from "react";
 import "./Newpost.css";
-function Newpost() {
+function Newpost({user_id,user_pro_pic,user_name,caption,post_img,post_likes,post_comments,post_date}) {
+  console.log(user_id,user_pro_pic,user_name,caption,post_img,post_likes,post_comments,post_date);
+ let lks=post_likes.length;
+ let cmnts=post_comments.length;
   return (
     <div>
       <div className="each_post">
         <div className="div_1">
           <div className="pr-pic">
-            <img src="https://media-exp1.licdn.com/dms/image/C5603AQGWplKH2yokIA/profile-displayphoto-shrink_200_200/0/1627312019874?e=1636588800&v=beta&t=CvA16l_eWwm9QQEPaxH4UftF2Tqk9EmFQ75ljLElDzs"></img>
+            <img src={user_pro_pic}></img>
           </div>
           <div className="name_follow">
-            <p className="name">Ramjith</p>
+            <p className="name">{user_name}</p>
             <p className="about">React js Developer</p>
-            <p className="time">45m</p>
+            <p className="time">{post_date}</p>
           </div>
           <div className="follow_now">
             <p className="follow_text">+ Follow</p>
@@ -19,17 +22,14 @@ function Newpost() {
         </div>
         <div className="div_2">
           <p className="title">
-            If you’re a talented professional or innovator in agritech,
-            Australia is the best place to grow your business and career. Find
-            out if you’re eligible for our fast track visa through our
-            Expression of Interest for Individuals at{" "}
+            {caption}{" "}
           </p>
         </div>
         <div className="div_3">
-          <img src="https://media-exp1.licdn.com/dms/image/sync/D4E18AQHf4ngLnTMwlA/companyUpdate-article-image-shrink_627_1200/0/1630370564645?e=1634169600&v=beta&t=bvpPDL3aWjX8zMd_-LkSzys_6Wd5sp6Q8iIwy1hEJZA" />
+          <img src={post_img} />
         </div>
         <div className="div_4">
-            <span className="likes_comments">50 Likes .  13 Comments</span>
+            <span className="likes_comments">{lks} Likes .  {cmnts} Comments</span>
             
         </div>
         <div className="div_5">

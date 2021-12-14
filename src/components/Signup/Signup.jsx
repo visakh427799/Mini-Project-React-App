@@ -130,8 +130,7 @@ function Signup() {
       
       axios.post(API+'/otp-verify',{email,otp}).then((res)=>{
         if(res.data.success){
-          
-          
+
           Toast.fire({
             icon: 'success',
             title: 'OTP verified successfully'
@@ -144,6 +143,8 @@ function Signup() {
 
            if(res.data.success){
             console.log(res.data.steps);
+
+
                  
            }
            else{
@@ -244,9 +245,8 @@ function Signup() {
 
           })
           setLoader(false)
+          history.push('/onboarding')
           //setCount(4)
-  
-    
        }
        else{
         Toast.fire({
@@ -262,17 +262,11 @@ function Signup() {
           title: 'something went wrong...!!'
         })
          setLoader(false)
-       
       })
      }
-     
+    }
 
-
-     }
-
-
-
-    const handleChangepass=(e)=>{
+  const handleChangepass=(e)=>{
 
       setPass({...pass,[e.target.name]:e.target.value});
  
@@ -288,13 +282,13 @@ function Signup() {
       return (
         <div className="bd">
     <h3>Connected <span className="in">in</span></h3>
-
+    
     <h2>Sign up</h2>
 
     <p>{otpsend?"An otp has been send to "+email:"Stay updated on your professional world"}</p>
     <div class="box">
     
-      <input onChange={handleChange} disabled={disabled} type="text" name="email" placeholder="Enter email or phone"/>
+     <input onChange={handleChange} disabled={disabled} type="text" name="email" placeholder="Enter email or phone"/>
      {otpsend?<input onChange={changeOtp} type="text" name="otp" placeholder="Enter the otp"/> :""}
      {/* {otpsend?<div className="timer"></div>:<></>} */}
      
@@ -306,7 +300,7 @@ function Signup() {
         </div>
     )
   
-      break;
+    break;
     case 2:
       return (
         <div>
@@ -328,9 +322,9 @@ function Signup() {
 
     
   
-      break;  
+    break;  
 
-      case 3:
+    case 3:
       return (
         <div>
              <h3>Connected <span className="in">in</span></h3>
@@ -353,8 +347,8 @@ function Signup() {
 
 
 
-      default:
-        break;
+default:
+break;
   }
 
 

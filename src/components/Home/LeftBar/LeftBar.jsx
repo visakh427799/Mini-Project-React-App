@@ -5,6 +5,7 @@ import getApi from '../../../API';
 const API=getApi();
 
 function LeftBar(props) {
+  console.log(props)
   const [user,setUsr]=React.useState({})
   
   return (
@@ -14,7 +15,7 @@ function LeftBar(props) {
         <div className="profile-pic">
           <img src="https://avatars.githubusercontent.com/u/60034460?v=4"></img>
         </div>
-        <p className="user-name">{props.user}</p>
+        <p className="user-name">{props.username.user}</p>
         <p className="about">
           MERN Stack |AWS| DevOps Enthusiast| Node js | React js | Express js |
           Mongodb|Python|sql

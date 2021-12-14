@@ -1,17 +1,94 @@
 import React from "react";
 import "./Post.css";
 import Newpost from "../Newpost/Newpost";
+import posts from '../../utils/posts'
+import Swal from 'sweetalert2'
+
+let allPosts=posts();
+
+
 function Post() {
+  const [show, setShow] = React.useState(false);
+
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
+  console.log(allPosts);
+
+
+const newPost=()=>{
+  
+    
+}
+
   return (
     <div className="outer">
       <div className="posts">
         <div className="Post_header">
           <div className="Post_top">
             <div className="Post_profile_pic">
-              <img src="https://media-exp1.licdn.com/dms/image/C5603AQG1fW8-nk86gA/profile-displayphoto-shrink_100_100/0/1628783984676?e=1636588800&v=beta&t=rJm2x5hFLDnZLsnE6ZIlwAUX1jeQ64WtMwwdRBUVdzs"></img>
+              <img src="https://avatars.githubusercontent.com/u/60034460?v=4"></img>
             </div>
             <div className="Post_start_post">
-              <button>Start a post</button>
+              <button onClick={handleShow}>Start a post</button>
+
+
+              {
+                show?<>
+
+<div id="myModal" class="modal">
+
+
+<div class="modal-content">
+  <span class="close" onClick={handleClose}>&times;</span>
+  <p>Create a post</p>
+
+  <div className="p_row">
+    <div className="p_1">
+        
+         <div className="p_img">
+            <img src="https://avatars.githubusercontent.com/u/60034460?v=4"></img>
+
+         </div> 
+         {/* <h4>Visakh T.S</h4> */}
+         
+    </div>
+    <div className="p_2">
+      <textarea type="text" placeholder="What you want to tell about..?" className="input">
+
+      </textarea>
+      </div>
+    {/* <div className="p_3"><a role="button" href="">Add hashtag</a></div> */}
+    <div className="p_4">
+       <div className="icns">
+           <ul >
+             <li> <i className="material-icons">insert_photo</i></li>
+
+             <li> <i className="material-icons">ondemand_video</i>
+              </li>
+              <li> <i className="material-icons">ondemand_video</i>
+              </li>
+              <li> <i className="material-icons">ondemand_video</i>
+              </li>
+           
+             
+           </ul>
+       </div>
+       
+
+
+    </div>
+    <div className="post_btn">
+         <a role="button">  POST </a>
+       </div>
+  </div>
+  
+</div>
+
+</div>
+                </>:""
+              }
+
+              
             </div>
           </div>
           <div className="Post_bottom">
@@ -35,9 +112,28 @@ function Post() {
         </div>
       </div>
       <div className="all_posts">
-        <Newpost />
-        <Newpost />
-        <Newpost />
+        {allPosts.map((dat) => {
+          let u_id = dat.user_id;
+          let u_name = dat.user_name;
+          let u_pro_pic = dat.user_pro_pic;
+          let cap = dat.caption;
+          let p_img = dat.post_img;
+          let likes = dat.likes;
+          let comments = dat.comments;
+          let p_date = dat.post_date;
+          return (
+            <Newpost
+              user_id={u_id}
+              user_name={u_name}
+              user_pro_pic={u_pro_pic}
+              caption={cap}
+              post_img={p_img}
+              post_likes={likes}
+              post_comments={comments}
+              post_date={p_date}
+            />
+          );
+        })}
       </div>
     </div>
   );
