@@ -329,3 +329,14 @@ background-color: rgb(241, 241, 241);
    background-color: rgb(61, 130, 241);
 }
 
+.loader {
+    border: 5px solid hsl(273, 98%, 51%);
+    border-radius: 50%;
+    border-top: 5px solid #e8ebe9;
+    width: 25px;
+    height: 25px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin: auto;
+    background-color: #581e8f;
+  }

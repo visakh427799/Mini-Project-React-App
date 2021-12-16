@@ -2,13 +2,22 @@ import React from "react";
 import "./Post.css";
 import Newpost from "../Newpost/Newpost";
 import posts from '../../utils/posts'
+import axios from 'axios'
 import Swal from 'sweetalert2'
+import getApi from '../../../API';
+const API=getApi();
 
 let allPosts=posts();
 
 
 function Post() {
   const [show, setShow] = React.useState(false);
+  const [post,setPost]=React.useState({
+     caption:"",
+     img:"",
+  })
+  const[loader,setLoader]=React.useState(false)
+
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -18,6 +27,22 @@ const handleShow = () => setShow(true);
 const newPost=()=>{
   
     
+}
+const handleChangepost=(e)=>{
+  setPost({...post,[e.target.name]:e.target.value})
+}
+const handleSubmitpost =()=>{
+  setLoader(true)
+   console.log(post)
+   let uid=localStorage.getItem('user');
+   if(uid){
+    axios.post(API+'/create-post',{uid,post}).then(()=>{
+  
+    }).catch(()=>{
+ 
+    })
+   }
+   
 }
 
   return (
@@ -53,7 +78,7 @@ const newPost=()=>{
          
     </div>
     <div className="p_2">
-      <textarea type="text" placeholder="What you want to tell about..?" className="input">
+      <textarea name="caption" onChange={handleChangepost} type="text" placeholder="What you want to tell about..?" className="input">
 
       </textarea>
       </div>
@@ -78,7 +103,7 @@ const newPost=()=>{
 
     </div>
     <div className="post_btn">
-         <a role="button">  POST </a>
+         <a role="button" onClick={handleSubmitpost}>  POST </a>
        </div>
   </div>
   

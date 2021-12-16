@@ -8,6 +8,22 @@ import Swal from 'sweetalert2'
 import getApi from '../../API';
 const API=getApi();
 function Signup() {
+//  React.useEffect(()=>{
+//   let uid=localStorage.getItem('user');
+//   if(uid){
+//     axios.post(API+'/progress',{uid}).then((res)=>{
+//       if(res.data.success){
+//         let stps=Number(res.data.steps)
+//         setCount(stps+1)
+//       }
+//     }).catch(()=>{
+
+//     })
+//   }
+//  },[])
+  // const setProgress=()=>{
+   
+  // }
 
   const Toast = Swal.mixin({
     toast: true,
@@ -29,7 +45,7 @@ function Signup() {
     const[disabled,setDisabled]=useState(false)
     const[email,setEmail]=useState("");
     const[otp,setOtp]=useState("")
-    const[count,setCount]=useState(1)
+    const[count,setCount]=useState(0)
 
     const [pass,setPass]=useState({
 
@@ -65,40 +81,50 @@ function Signup() {
         axios.post(API+'/email-verify',{email})
         .then((res)=>{
             if(res.data.success){
-          
-              setLoader(false)
-              const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 3000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
-                })
+
+                  if(res.data.val==1){
+                    setLoader(false)
+                    
+                    let uid=localStorage.getItem('user');
+                    if(uid){
+                      axios.post(API+'/progress',{uid}).then((res)=>{
+                        if(res.data.success){
+                          let stps=Number(res.data.steps)
+                          setCount(stps+1)
+                          console.log(count)
+                          
+                        }
+                      }).catch(()=>{
                 
-                Toast.fire({
-                  icon: 'success',
-                  title: 'OTP sent successfully'
-                })
-                // .then(()=>{
-                //   setOtpsend(true);
-                // })
-                  setDisabled(true)
-                  setOtpsend(true);
+                      })
+                    }
+
+
+
+
+                    
+                        
+                }
+              
+              else if(res.data.val==2){
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'OTP sent successfully'
+                  })
+                
+                setLoader(false)
+                setDisabled(true)
+                setOtpsend(true);
+               
+              }
              
-                // var seconds = 180;
-                // var el = document.getElementsByClassName('timer');
-                
-                // function incrementSeconds() {
-                //     seconds -= 1;
-                //     el.innerHTML = "You have been here for " + seconds + " seconds.";
-                // }
-                
-                // setInterval(incrementSeconds, 1000);
+
+
+
+          
             }
+            
             else{
                 setLoader(false)
               const Toast = Swal.mixin({
@@ -136,28 +162,28 @@ function Signup() {
             title: 'OTP verified successfully'
           })
          setLoader(false)
+         setCount(1)
+         localStorage.setItem('user',res.data.user_id)
+          // let uid=localStorage.getItem('user');
+          // axios.post(API+'/progress',{uid}).then((res)=>{
 
-          localStorage.setItem('user',res.data.user_id)
-          let uid=localStorage.getItem('user');
-          axios.post(API+'/progress',{uid}).then((res)=>{
-
-           if(res.data.success){
-            console.log(res.data.steps);
+          //  if(res.data.success){
+          //   console.log(res.data.steps);
 
 
                  
-           }
-           else{
-            console.log("err");
+          //  }
+          //  else{
+          //   console.log("err");
 
-           }
+          //  }
 
 
-          }).catch(()=>{
-            console.log("err");
+          // }).catch(()=>{
+          //   console.log("err");
 
-          })
-          setCount(2)
+          // })
+          
 
         }
         else{
@@ -206,7 +232,7 @@ function Signup() {
 
             })
             setLoader(false)
-            setCount(3)
+            setCount(2)
     
       
          }
@@ -278,7 +304,7 @@ function Signup() {
     }
     
   switch(count){
-    case 1:
+    case 0:
       return (
         <div className="bd">
     <h3>Connected <span className="in">in</span></h3>
@@ -288,8 +314,8 @@ function Signup() {
     <p>{otpsend?"An otp has been send to "+email:"Stay updated on your professional world"}</p>
     <div class="box">
     
-     <input onChange={handleChange} disabled={disabled} type="text" name="email" placeholder="Enter email or phone"/>
-     {otpsend?<input onChange={changeOtp} type="text" name="otp" placeholder="Enter the otp"/> :""}
+     <input onChange={handleChange} disabled={disabled} type="text" name="email" placeholder="*Enter email or phone"/>
+     {otpsend?<input onChange={changeOtp} type="text" name="otp" placeholder="*Enter the otp"/> :""}
      {/* {otpsend?<div className="timer"></div>:<></>} */}
      
       <button onClick={otpsend?otpSubmit:handleSubmit}>{loader?<div  className="loader" id="loginloader"></div>: "Next"}</button>
@@ -301,7 +327,7 @@ function Signup() {
     )
   
     break;
-    case 2:
+    case 1:
       return (
         <div>
              <h3>Connected <span className="in">in</span></h3>
@@ -324,7 +350,7 @@ function Signup() {
   
     break;  
 
-    case 3:
+    case 2:
       return (
         <div>
              <h3>Connected <span className="in">in</span></h3>

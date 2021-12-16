@@ -5,11 +5,13 @@ import Countries from "../utils/cArray";
 import Jobs from "../utils/jobArray";
 import getApi from "../../API";
 import axios from "axios";
+import {useHistory} from "react-router-dom"
 const API = getApi();
 let cArr = Countries();
 let jobArr = Jobs();
 
 function Profile(props) {
+  let history=useHistory();
   console.log(props.user);
   const [loader, setLoader] = useState(false);
   const [states, setStates] = useState([]);
@@ -43,7 +45,7 @@ function Profile(props) {
       .post(API + "/add-location", { country,st,u_id})
       .then((resp) => { 
         setLoader(false)
-        setCount(2);
+        setCount(5);
 
       })
       .catch((err) => {});
@@ -74,7 +76,7 @@ function Profile(props) {
       console.log(resp)
       if(resp.data.success){
         setLoader(false)
-        setCount(3)
+        setCount(6)
       }
 
 
@@ -103,7 +105,7 @@ if(u_id){
     if(resp.data.success){
 
       setLoader(false)
-      setCount(4)
+      setCount(7)
     }
   })
   .catch((err) => {});
@@ -134,6 +136,7 @@ const onFileUpload=()=>{
     .then((resp)=>{
        if(resp.data.success){
         alert("image uploaded")
+         history.push('/home')
        }
        else{
          console.log(resp.data.err)
@@ -153,7 +156,7 @@ const onFileUpload=()=>{
 }
 
   switch (count) {
-    case 1:
+    case 4:
       return (
         <div className="bd">
           <h3>
@@ -210,7 +213,7 @@ const onFileUpload=()=>{
       );
 
       break;
-    case 2:
+    case 5:
       return (
         <div className="bd">
           <h3>
@@ -248,7 +251,7 @@ const onFileUpload=()=>{
      
       
 
-    case 3:
+    case 6:
       return (
         <div>
           <h3>
@@ -301,7 +304,7 @@ const onFileUpload=()=>{
       );
       break;
 
-          case 4:
+          case 7:
       return (
         <div>
           <h3>

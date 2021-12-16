@@ -16,7 +16,7 @@ function Login() {
   });
   const [loader, setLoader] = useState(false);
   //cons
-
+  
   const handleSubmit = () => {
     console.log(process.env.REACT_APP_BASE_URL_HEROKU);
     if (user.email === "" && user.password === "") {
@@ -30,7 +30,7 @@ function Login() {
          setLoader(false)
          console.log(res.data.user_id)
          localStorage.setItem('user',res.data.user_id)
-         history.push("/home");
+         history.push("/signup");
         //  //redirect to home
         }
         else{
