@@ -2,48 +2,62 @@ import React from "react";
 import "./Post.css";
 import Newpost from "../Newpost/Newpost";
 import posts from '../../utils/posts'
-import axios from 'axios'
 import Swal from 'sweetalert2'
+import axios from "axios";
 import getApi from '../../../API';
 const API=getApi();
 
 let allPosts=posts();
 
 
-function Post() {
-  const [show, setShow] = React.useState(false);
-  const [post,setPost]=React.useState({
-     caption:"",
-     img:"",
-  })
-  const[loader,setLoader]=React.useState(false)
 
+
+function Post() {
+  const [newpost,setNewpost]=React.useState(true)
+
+  React.useEffect(()=>{
+
+    axios.get(API+'/allposts').then((resp)=>{
+     setPosts(resp.data.posts)
+     console.log(resp.data.posts)
+    })
+
+  },[newpost])
+
+
+  const [show, setShow] = React.useState(false);
+  const [posts,setPosts]=React.useState([])
+  const [post,setPost]=React.useState({
+    caption:""
+
+  })
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
-  console.log(allPosts);
 
 
-const newPost=()=>{
+const postChange =(e)=>{
+   setPost({...post,[e.target.name]:e.target.value})
+}
+const submitPost=()=>{
   
+
+  console.log(post)
+
+  let uid=localStorage.getItem('user');
+
+  if(uid){
+    axios.post(API+'/create-post',{uid,post}).then((res)=>{
+        console.log(res.data)
+        if(res.data.success){
+          setNewpost(!newpost)
+          handleClose()
+        }
+    })
+  }
     
 }
-const handleChangepost=(e)=>{
-  setPost({...post,[e.target.name]:e.target.value})
-}
-const handleSubmitpost =()=>{
-  setLoader(true)
-   console.log(post)
-   let uid=localStorage.getItem('user');
-   if(uid){
-    axios.post(API+'/create-post',{uid,post}).then(()=>{
-  
-    }).catch(()=>{
- 
-    })
-   }
-   
-}
+
 
   return (
     <div className="outer">
@@ -78,7 +92,7 @@ const handleSubmitpost =()=>{
          
     </div>
     <div className="p_2">
-      <textarea name="caption" onChange={handleChangepost} type="text" placeholder="What you want to tell about..?" className="input">
+      <textarea type="text" onChange={postChange} name="caption" placeholder="What you want to tell about..?" className="input">
 
       </textarea>
       </div>
@@ -88,12 +102,7 @@ const handleSubmitpost =()=>{
            <ul >
              <li> <i className="material-icons">insert_photo</i></li>
 
-             <li> <i className="material-icons">ondemand_video</i>
-              </li>
-              <li> <i className="material-icons">ondemand_video</i>
-              </li>
-              <li> <i className="material-icons">ondemand_video</i>
-              </li>
+            
            
              
            </ul>
@@ -103,7 +112,7 @@ const handleSubmitpost =()=>{
 
     </div>
     <div className="post_btn">
-         <a role="button" onClick={handleSubmitpost}>  POST </a>
+         <a role="button" onClick={submitPost} >    POST </a>
        </div>
   </div>
   
@@ -137,15 +146,16 @@ const handleSubmitpost =()=>{
         </div>
       </div>
       <div className="all_posts">
-        {allPosts.map((dat) => {
+        {posts.map((dat) => {
           let u_id = dat.user_id;
           let u_name = dat.user_name;
           let u_pro_pic = dat.user_pro_pic;
           let cap = dat.caption;
-          let p_img = dat.post_img;
+          let p_img = dat.img;
           let likes = dat.likes;
           let comments = dat.comments;
-          let p_date = dat.post_date;
+          let p_date = dat.date_post;
+          let post_id=dat._id;
           return (
             <Newpost
               user_id={u_id}
@@ -156,6 +166,7 @@ const handleSubmitpost =()=>{
               post_likes={likes}
               post_comments={comments}
               post_date={p_date}
+              post_id={post_id}
             />
           );
         })}

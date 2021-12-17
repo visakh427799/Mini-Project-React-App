@@ -1,9 +1,30 @@
 import React from "react";
 import "./Newpost.css";
-function Newpost({user_id,user_pro_pic,user_name,caption,post_img,post_likes,post_comments,post_date}) {
-  console.log(user_id,user_pro_pic,user_name,caption,post_img,post_likes,post_comments,post_date);
+import axios from "axios";
+import getApi from '../../../API';
+const API=getApi();
+
+function Newpost({post_id,user_id,user_pro_pic,user_name,caption,post_img,post_likes,post_comments,post_date}) {
+  
  let lks=post_likes.length;
  let cmnts=post_comments.length;
+
+
+   const addLike=(uid,p_id)=>{
+
+     console.log(p_id)   
+     let user_id=localStorage.getItem('user');
+     
+     axios.post(API+'/add-like',{uid,p_id}).then((res=>{
+
+       if(res){
+          console.log("liked")
+       }
+     }))
+   }
+
+
+
   return (
     <div>
       <div className="each_post">
@@ -34,7 +55,9 @@ function Newpost({user_id,user_pro_pic,user_name,caption,post_img,post_likes,pos
         </div>
         <div className="div_5">
             <div className="div_like"> 
-               <i className="material-icons">favorite_border</i>
+               <i className="material-icons " onClick={()=>{addLike(user_id,post_id)}} >favorite_border</i>
+               {/* style={{color:'red'}} */}
+               
                <span>Like</span>
                </div>
             <div className="div_comment">
