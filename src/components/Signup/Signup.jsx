@@ -82,31 +82,31 @@ function Signup() {
         .then((res)=>{
             if(res.data.success){
 
-                  if(res.data.val==1){
-                    setLoader(false)
+                //   if(res.data.val==1){
+                //     setLoader(false)
                     
-                    let uid=localStorage.getItem('user');
-                    if(uid){
-                      axios.post(API+'/progress',{uid}).then((res)=>{
-                        if(res.data.success){
-                          let stps=Number(res.data.steps)
-                          setCount(stps+1)
-                          console.log(count)
+                //     let uid=localStorage.getItem('user');
+                //     if(uid){
+                //       axios.post(API+'/progress',{uid}).then((res)=>{
+                //         if(res.data.success){
+                //           let stps=Number(res.data.steps)
+                //           setCount(stps+1)
+                //           console.log(count)
                           
-                        }
-                      }).catch(()=>{
+                //         }
+                //       }).catch(()=>{
                 
-                      })
-                    }
+                //       })
+                //     }
 
 
 
 
                     
                         
-                }
+                // }
               
-              else if(res.data.val==2){
+              // else if(res.data.val==2){
                 
                   Toast.fire({
                     icon: 'success',
@@ -123,7 +123,7 @@ function Signup() {
 
 
           
-            }
+            
             
             else{
                 setLoader(false)

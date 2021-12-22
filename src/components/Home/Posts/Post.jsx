@@ -39,6 +39,14 @@ const handleShow = () => setShow(true);
 const postChange =(e)=>{
    setPost({...post,[e.target.name]:e.target.value})
 }
+
+// const handleFile=(e)=>{
+//   // console.log( e.target.files[0]);
+//   setPhoto( e.target.files[0])
+// }
+const submitPostNull=()=>{
+  alert("Please enter something...!")
+}
 const submitPost=()=>{
   
 
@@ -86,7 +94,7 @@ const submitPost=()=>{
         
          <div className="p_img">
             <img src="https://avatars.githubusercontent.com/u/60034460?v=4"></img>
-
+         
          </div> 
          {/* <h4>Visakh T.S</h4> */}
          
@@ -100,19 +108,26 @@ const submitPost=()=>{
     <div className="p_4">
        <div className="icns">
            <ul >
-             <li> <i className="material-icons">insert_photo</i></li>
-
+          {/* <input onChange={handleFile}  className="profile_pic" type="file" name="profile_pic"/> */}
+             <li> <i className="material-icons">insert_photo</i> </li>
+             {/* <i className="material-icons">insert_photo</i>  */}
+            
             
            
              
            </ul>
+         
        </div>
        
 
 
     </div>
     <div className="post_btn">
-         <a role="button" onClick={submitPost} >    POST </a>
+      {
+        post.caption? <a role="button" onClick={submitPost} >    POST </a>:
+        <a role="button"  disabled="true" onClick={submitPostNull} >    POST </a>
+      }
+        
        </div>
   </div>
   
